@@ -1,5 +1,5 @@
 {
-  "name": "mvc",
+  "name": "MVCProject",
   "version": "1.0.0",
   "description": "MVC proj",
   "main": "./src/app.js",
