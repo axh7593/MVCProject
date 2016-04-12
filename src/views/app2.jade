@@ -1,0 +1,93 @@
+doctype html
+html(lang='en')
+  head
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+    meta(charset='UTF-8')
+    title Box
+    style.
+      #title{text-align:center;}
+      @keyframes moveit{
+      from {left:0;}
+      to {left:50px;};
+      }
+      @keyframes rotator{
+      0% {transform: rotate(0deg);}
+      25% {transform: rotate(20deg);}
+      50% {transform: rotate(0deg);}
+      55% {transform: rotate(-20deg);}
+      70% {transform: rotate(0deg);}
+      100% {transform: rotate(-360deg);}
+      }
+      #box{
+      background-color: blue;
+      height: 200px;
+      width: 200px;
+      margin: 50px auto;
+      position: relative;
+      /*
+      transition-property
+      transition-duration
+      transition-timing-funtion: ease (slow-fast-slow, default)
+      linear
+      ease-in
+      ease-out
+      ease-in-out (more dramatic than ease)
+      */
+      transition: width 2s ease-in-out;
+      }
+      #box:hover{
+      width: 800px;
+      }
+      #checkbox:checked + #box{
+      animation: rotator 10s ease 0s 1, moveit 1s linear 10s infinite;
+      }
+    script.
+      function fadeMe(ele){
+      // parseFloat to get decimals
+      var alpha = parseFloat(window.getComputedStyle(ele).opacity);
+      //fade in
+      if( alpha == 0){
+      fadeIn(ele, alpha);
+      }
+      // fade out
+      else{
+      fadeOut(ele, alpha);
+      }
+      function fadeOut(ele){
+      if(alpha > 0.05){
+      alpha -= .05;
+      ele.style.opacity = alpha;
+      // anontmous function for the callback parameter of setTimeout()
+      setTimeout(function() {
+      fadeOut(ele, alpha);
+      }, 50);
+      }
+      else{
+      ele.style.opacity = 0;
+      }
+      }
+      function fadeIn(ele){
+      if(alpha < 1){
+      alpha += .05;
+      ele.style.opacity = alpha;
+      // anontmous function for the callback parameter of setTimeout()
+      setTimeout(function() {
+      fadeIn(ele, alpha);
+      }, 50);
+      }
+      }
+      }
+  body
+    nav
+    .navlink
+      a(href="/login") Login
+    .navlink
+      a(href="/signup") Sign Up
+    .navlink
+      a(href="/logout") Log out
+    .navlink
+    div
+      h1#title Hover over box to see neat things....
+    |     Watch something COOOOOL
+    input#checkbox(type='checkbox')
+    #box(onclick='fadeMe(this);')  

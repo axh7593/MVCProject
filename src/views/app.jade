@@ -1,0 +1,75 @@
+doctype html
+html(lang='en')
+  head
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+    meta(charset='utf-8')
+    title Canvas
+    style.
+      body {
+      background: #eeeeee;
+      font-family: tahoma, verdana, sans serif;
+      }
+      #mainCanvas {
+      background: #ffffff;
+      position:absolute;
+      z-index: 0;
+      padding-left: 0;
+      box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+      padding: 0;
+      margin: auto;
+      display: block;
+      top: 100px;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      }
+      label{
+      font-size: 12px;
+      margin-right:0.75em;
+      }
+    script.
+      var canvas;
+      var ctx;
+      function init()
+      {
+      canvas = document.querySelector("#mainCanvas")
+      ctx = this.canvas.getContext('2d');
+      drawGrid(ctx, 'lightgray', 10, 10);
+      }
+      function handleMessage(data)
+      {
+      draws[data.time] = data;
+      draw(data);
+      }
+      // set some drawing state variables
+      ctx.strokeStyle = red;
+      ctx.fillStyle = '#ffffff';
+      ctx.lineWidth = 0.5;
+      ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      // vertical lines all set!
+      for (var x = cellWidth + 0.5; x < ctx.canvas.width; x += cellWidth) {
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, ctx.canvas.height);
+      ctx.stroke();}
+      for (var x = cellHeight + 0.5; x < ctx.canvas.height; x += cellHeight) {
+      ctx.beginPath();
+      ctx.moveTo(0, x);
+      ctx.lineTo(ctx.canvas.width, x);
+      ctx.stroke();
+      }
+      // restore the drawing state
+      ctx.restore();
+      }
+      window.onload = init;
+  body
+   nav
+    .navlink
+      a(href="/login") Login
+    .navlink
+      a(href="/signup") Sign Up
+    .navlink
+      a(href="/logout") Log out
+    .navlink
+      a(href="/chat") Next
+    canvas#mainCanvas(width='800', height='600')
