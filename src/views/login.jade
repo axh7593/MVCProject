@@ -3,7 +3,6 @@ block append style
     link(rel="stylesheet", type="text/css", href="/assets/style.css")
 block body
   nav
-    a(href="/login")
     .navlink
       a(href="/login") Login
     .navlink
@@ -16,5 +15,8 @@ block body
       input#pass(type="password", name="pass", placeholder="password")
       input(type="hidden", name="_csrf", value="#{csrfToken}")
       a#loginSubmit(class="formSubmit", href="#") Sign in
+      br
+      br
+      #error
 block scripts
     script(src="/assets/client.js")

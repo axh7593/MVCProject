@@ -33,7 +33,6 @@ var AccountSchema = new mongoose.Schema({
 });
 
 AccountSchema.methods.toAPI = function() {
-    //_id is built into your mongo document and is guaranteed to be unique
     return {
         username: this.username,
         _id: this._id 
@@ -78,7 +77,7 @@ AccountSchema.statics.authenticate = function(name, callback) {
     
     };
 
-AccountSchema.statics.generateHash = function(password,             callback) {
+AccountSchema.statics.generateHash = function(password, callback) {
 
 	var salt = crypto.randomBytes(saltLength);
 

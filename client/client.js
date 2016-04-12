@@ -19,10 +19,8 @@ $(document).ready(function() {
 
                 window.location = result.redirect;
             },
-            error: function(xhr, status, error) {
-                var messageObj = JSON.parse(xhr.responseText);
-            
-                handleError(messageObj.error);
+            error: function(error) {
+                $("#error").html("Username and password are not correct");
             }
         });        
     }
@@ -31,12 +29,12 @@ $(document).ready(function() {
         e.preventDefault();
     
         if($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == '') {
-            handleError("All fields are required");
+            $("#errorSignup").html("Username and passswords do not match");
             return false;
         }
         
         if($("#pass").val() !== $("#pass2").val()) {
-            handleError("Passwords do not match");
+            $("#errorSignup").html("Passwords do not match");
             return false;           
         }
 
@@ -47,10 +45,9 @@ $(document).ready(function() {
 
     $("#loginSubmit").on("click", function(e) {
         e.preventDefault();
-    
+        
     
         if($("#user").val() == '' || $("#pass").val() == '') {
-            handleError("Username or password are empty");
             return false;
         }
     
