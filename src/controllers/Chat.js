@@ -1,5 +1,5 @@
 var callPage = function(req, res){
-  res.render('app1')  
+  res.render('app1');  
 };
 
 var chat = function(req, res){
