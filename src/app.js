@@ -9,7 +9,7 @@ var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var url = require('url');
 
-var dbURL = process.env.MONGOLAB_URI || "mongodb://localhost/MVC";
+var dbURL = process.env.MONGOLAB_URI || "mongodb://localhost/MVCProject";
 
 var db = mongoose.connect(dbURL, function(err){
    if(err){
